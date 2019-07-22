@@ -1,0 +1,17 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/blog.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/sonarlint/
+.idea/workspace.xml
+client/.gitignore
+client/src/utils/
+client/yarn.lock
+.idea/vcs.xml
+node_modules/
+yarn-error.log
+yarn.lock
+client/README.md
+client/package.json
+
+
