@@ -1,6 +1,6 @@
 
 /* SELECTORS */
-export const getPosts = ({ posts }) => posts.data;
+export const getPosts = ({ posts }) => posts;
 /* ACTIONS */
 
 // action name creator
@@ -14,7 +14,7 @@ const initialState = [
 ];
 
 /* REDUCER */
-
+/* ACTIONS */
 export const LOAD_POSTS = createActionName('LOAD_POSTS');
 
 /* THUNKS */
@@ -30,7 +30,7 @@ export const loadPostsRequest = () => {
 		
 	};
 };
-
+/* CREATOR ACTIONS */
 export const loadPosts = payload => ({ payload, type: LOAD_POSTS });
 
 export default function reducer(statePart = initialState, action = {}) {

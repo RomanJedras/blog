@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { PropTypes } from 'prop-types';
-import {loadPosts} from "../../../redux/postsRedux";
+
 
 
 class Posts extends Component {
@@ -13,7 +13,6 @@ class Posts extends Component {
 	
 	
 	render () {
-	    console.log(loadPosts());
 		const { posts } = this.props;
 		console.log(posts);
 		return (
