@@ -1,0 +1,42 @@
+import React, {Component} from 'react';
+import { PropTypes } from 'prop-types';
+import {loadPosts} from "../../../redux/postsRedux";
+
+
+class Posts extends Component {
+	
+	componentDidMount() {
+		const { loadPosts } = this.props;
+		loadPosts();
+	}
+	
+	
+	
+	render () {
+	    console.log(loadPosts());
+		const { posts } = this.props;
+		console.log(posts);
+		return (
+			<div>
+			Posts
+				<ul>
+					{posts.map(post => <li key={post.id}>{post.title}</li>)}
+				</ul>
+			</div>
+		);
+	}
+}
+
+Posts.propTypes = {
+	posts: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string.isRequired,
+			title: PropTypes.string.isRequired,
+			content: PropTypes.string.isRequired,
+		})
+	),
+	loadPosts: PropTypes.func.isRequired,
+};
+
+
+export default Posts;
