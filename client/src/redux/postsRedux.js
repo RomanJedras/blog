@@ -34,6 +34,9 @@ export const loadPostsRequest = () => {
 export const loadPosts = payload => ({ payload, type: LOAD_POSTS });
 
 export default function reducer(statePart = initialState, action = {}) {
+	
+	console.log(action);
+	
 	switch (action.type) {
 		case LOAD_POSTS:
 			return [ ...action.payload ];
