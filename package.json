@@ -10,7 +10,7 @@
     "install:client": "cd client && npm install",
     "install:server": "cd server && npm install",
     "start": "npm-run-all -p -l start:*",
-    "start:server": "cd server && node server.js",
+    "start:server": "cd server && yarn start",
     "start:client": "cd client && yarn start"
   },
   "dependencies": {
