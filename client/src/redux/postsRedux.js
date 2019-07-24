@@ -4,9 +4,9 @@ import { API_URL } from '../config';
 
 
 /* SELECTORS */
-export const getPosts = ({ posts }) => posts;
-export const getPostsNumber = ({ posts }) => posts.length;
-
+export const getPosts = ({ posts }) => posts.data;
+export const getPostsNumber = ({ posts }) => posts.data.length;
+export const getRequest = ({ posts }) => posts.request;
 
 
 /* ACTIONS */
@@ -17,21 +17,30 @@ const createActionName = name => `app/${reducerName}/${name}`;
 
 /* INITIAL STATE */
 
-const initialState = [
-	
-	];
+const initialState = {
+	data: [],
+	request: {
+		pending: false,
+	},
+};
 
 /* REDUCER */
 /* ACTIONS */
 export const LOAD_POSTS = createActionName('LOAD_POSTS');
+export const START_REQUEST = createActionName('START_REQUEST');
+export const END_REQUEST = createActionName('END_REQUEST');
 
 /* THUNKS */
 export const loadPostsRequest = () => {
 	return async dispatch => {
+		
+		dispatch(startRequest());
+		
 		try {
 			let res = await axios.get(`${API_URL}/posts`);
 			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
 			dispatch(loadPosts(res.data));
+			dispatch(endRequest());
 		} catch(e) {
 			console.log(e.message);
 		}
@@ -40,12 +49,18 @@ export const loadPostsRequest = () => {
 };
 /* CREATOR ACTIONS */
 export const loadPosts = payload => ({ payload, type: LOAD_POSTS });
+export const startRequest = () => ({ type: START_REQUEST });
+export const endRequest = () => ({ type: END_REQUEST });
 
 export default function reducer(statePart = initialState, action = {}) {
 	
 	switch (action.type) {
 		case LOAD_POSTS:
-			return [ ...action.payload ];
+			return { ...statePart, data: action.payload };
+		case START_REQUEST:
+			return { ...statePart, request: { pending: true } };
+		case END_REQUEST:
+			return { ...statePart, request: { pending: false } };
 		default:
 			return statePart;
 	}

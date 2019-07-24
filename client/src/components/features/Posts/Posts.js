@@ -14,11 +14,11 @@ class Posts extends Component {
 	
 	
 	render () {
-		const { posts } = this.props;
+		const { posts, request } = this.props;
 		return (
 			<div>
+				{request.pending && <Spinner />}
 				<PostsList posts={posts} />
-				<Spinner />
 			</div>
 		);
 	}
