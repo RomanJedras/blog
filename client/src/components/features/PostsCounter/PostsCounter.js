@@ -4,12 +4,9 @@ import { PropTypes } from 'prop-types';
 
 class PostsCounter extends Component {
 	
-	
-	
-	
 	render () {
 		const { posts } = this.props;
-		console.log(posts);
+		
 		if (posts) {
 			return (
 				<div>

@@ -4,6 +4,9 @@ import { API_URL } from '../config';
 /* SELECTORS */
 export const getPosts = ({ posts }) => posts;
 export const getPostsNumber = ({ posts }) => posts.length;
+
+
+
 /* ACTIONS */
 
 // action name creator
@@ -13,8 +16,8 @@ const createActionName = name => `app/${reducerName}/${name}`;
 /* INITIAL STATE */
 
 const initialState = [
-
-];
+	
+	];
 
 /* REDUCER */
 /* ACTIONS */

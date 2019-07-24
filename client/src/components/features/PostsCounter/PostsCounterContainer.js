@@ -6,4 +6,6 @@ const mapStateToProps = state => ({
 	posts: getPostsNumber(state),
 })
 
+
+
 export default connect(mapStateToProps)(PostsCounter);
