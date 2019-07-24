@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { PropTypes } from 'prop-types';
 
+import PostsList from '../PostsList/PostsList';
+
+
 class Posts extends Component {
 	
 	componentDidMount() {
@@ -15,10 +18,7 @@ class Posts extends Component {
 		console.log(this)
 		return (
 			<div>
-			Posts
-				<ul>
-					{posts.map(post => <li key={post.id}>{post.title}</li>)}
-				</ul>
+				<PostsList posts={posts} />
 			</div>
 		);
 	}
