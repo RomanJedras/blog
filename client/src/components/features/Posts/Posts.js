@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { PropTypes } from 'prop-types';
-
+import Spinner from '../../common/Spinner/Spinner';
 import PostsList from '../PostsList/PostsList';
 
 
@@ -15,10 +15,10 @@ class Posts extends Component {
 	
 	render () {
 		const { posts } = this.props;
-		console.log(this)
 		return (
 			<div>
 				<PostsList posts={posts} />
+				<Spinner />
 			</div>
 		);
 	}

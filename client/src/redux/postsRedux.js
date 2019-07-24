@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { API_URL } from '../config';
 
+
+
 /* SELECTORS */
 export const getPosts = ({ posts }) => posts;
 export const getPostsNumber = ({ posts }) => posts.length;
@@ -28,6 +30,7 @@ export const loadPostsRequest = () => {
 	return async dispatch => {
 		try {
 			let res = await axios.get(`${API_URL}/posts`);
+			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
 			dispatch(loadPosts(res.data));
 		} catch(e) {
 			console.log(e.message);
