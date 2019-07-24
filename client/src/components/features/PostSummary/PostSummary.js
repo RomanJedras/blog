@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 
 import Button from '../../common/Button/Button';
 import SmallTitle from '../../common/SmallTitle/SmallTitle';
+import HtmlBox from '../../common/HtmlBox/HtmlBox';
 
 import './PostSummary.scss';
 
@@ -10,7 +11,7 @@ import './PostSummary.scss';
 const PostSummary = ({ id, title, content }) => (
 	<article className="post-summary">
 		<SmallTitle>{title}</SmallTitle>
-		<p>{content}</p>
+		<HtmlBox>{content}</HtmlBox>
 		<Button variant="primary">
 			Read more
 		</Button>
