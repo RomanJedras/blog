@@ -18,3 +18,17 @@ exports.getPosts = async (req, res) => {
 	}
 	
 };
+
+exports.getPost = async (req, res) => {
+	console.log(req.params.id);
+	try {
+		res.status(200).json(await Post.findById(req.params.id));
+		
+	} catch (error) {
+		res.status(500).json({
+			'status':'fail',
+			'messages': error  //On production should be Invalid data send
+		});
+	}
+	
+};

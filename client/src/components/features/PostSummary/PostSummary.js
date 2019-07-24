@@ -8,11 +8,19 @@ import cutText from './PostSummaryContainer'
 import './PostSummary.scss';
 
 
-const PostSummary = ({ id, title, content }) => (
+const handleChange = (id) => {
+	console.log(id);
+}
+
+
+
+const PostSummary = ({ _id, title, content }) => (
 	<article className="post-summary">
 		<SmallTitle>{title}</SmallTitle>
 		<HtmlBox>{cutText(content, 250)}</HtmlBox>
-		<Button variant="primary">
+		<Button variant="primary" onClick={() =>{
+			handleChange(_id)
+		}}>
 			Read more
 		</Button>
 	</article>

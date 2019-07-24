@@ -22,7 +22,7 @@ class App extends React.Component {
                 <Route path="/posts" exact component={Posts} />
                 <Route path="/posts/new" exact component={AddPostPage} />
                 <Route path="/contact" exact component={Contact} />
-                <Route path="/posts/postID" exact component={SinglePostPage} />
+                <Route path="/posts/:id" exact component={SinglePostPage} />
                 <Route component={NotFound} />
             </Switch>
         </MainLayout>

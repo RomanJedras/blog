@@ -10,7 +10,7 @@ class NavBar extends React.Component {
 				<Link to='/posts'>Posts</Link>
 				<Link to='/posts/new'>New post</Link>
 				<Link to='/contact'>Contact</Link>
-				<Link to='/posts/postID'>Single Post </Link>
+				<Link to='/posts/:id'>Single Post </Link>
 			</div>
 		);
 	}

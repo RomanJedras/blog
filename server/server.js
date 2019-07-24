@@ -25,7 +25,7 @@ db.once('open', () =>
 	console.log('Connected to the database'),
 	loadTestData()
 );
-db.on('error', (err) => console.log('Error ' + err));
+db.on('error', (err) => console.log('Error :' + err));
 const app = express();
 app.use(helmet());
 app.use(cors());

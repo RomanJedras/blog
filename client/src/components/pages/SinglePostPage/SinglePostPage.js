@@ -1,8 +1,12 @@
 import React from 'react';
+import PageTitle from '../../common/PageTitle/PageTitle';
+
+
+
 
 const SinglePostPage = () => (
 	<div>
-		<h1>Single Post</h1>
+		<PageTitle>Single Posts </PageTitle>
 	</div>
 );
 
