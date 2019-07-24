@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_URL } from '../config';
 
 /* SELECTORS */
 export const getPosts = ({ posts }) => posts;
@@ -22,7 +23,7 @@ export const LOAD_POSTS = createActionName('LOAD_POSTS');
 export const loadPostsRequest = () => {
 	return dispatch => {
 		
-		axios.get('http://localhost:8000/api/posts').then(res => {
+		axios.get(`${API_URL}/posts`).then(res => {
 			dispatch(loadPosts(res.data));
 		})
 		.catch(err => {
