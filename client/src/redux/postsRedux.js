@@ -22,7 +22,8 @@ const initialState = {
 	singlePost: {
 		id: '',
 		title: '',
-		content: ''
+		content: '',
+		author: ''
 	},
 	request: {
 		pending: false,

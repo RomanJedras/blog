@@ -28,6 +28,7 @@ class SinglePost extends Component {
 					<article className="post-summary">
 						<SmallTitle>{singlePost.title}</SmallTitle>
 						<HtmlBox>{singlePost.content}</HtmlBox>
+						<p>Author: {singlePost.author}</p>
 					</article>
 				</div>
 			)
@@ -63,6 +64,7 @@ SinglePost.propTypes = {
 		{ id: PropTypes.string.isRequired,
 			title: PropTypes.string.isRequired,
 			content: PropTypes.string.isRequired,
+			author: PropTypes.string.isRequired
 		}),
 	loadPosts: PropTypes.func.isRequired,
 	resetRequest: PropTypes.func.isRequired,
