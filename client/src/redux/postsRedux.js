@@ -7,7 +7,7 @@ import { API_URL } from '../config';
 export const getPosts = ({ posts }) => posts.data;
 export const getPostsNumber = ({ posts }) => posts.data.length;
 export const getRequest = ({ posts }) => posts.request;
-
+export const getSinglePost = ({ posts }) => posts.singlePost;
 
 /* ACTIONS */
 
@@ -19,6 +19,11 @@ const createActionName = name => `app/${reducerName}/${name}`;
 
 const initialState = {
 	data: [],
+	singlePost: {
+		id: '',
+		title: '',
+		content: ''
+	},
 	request: {
 		pending: false,
 		error: null,
@@ -82,7 +87,7 @@ export default function reducer(statePart = initialState, action = {}) {
 		case LOAD_POSTS:
 			return { ...statePart, data: action.payload };
 		case LOAD_ONEPOST:
-			return { ...statePart, data: action.payload };
+			return { ...statePart, singlePost: action.payload, request: { pending: true, error: null, success: null } };
 		case START_REQUEST:
 			return { ...statePart, request: { pending: true, error: null, success: null } };
 		case END_REQUEST:

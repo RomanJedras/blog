@@ -6,23 +6,25 @@ import PostsList from '../PostsList/PostsList';
 import Alert from '../../common/Alert/Alert'
 
 
+
+
 class Posts extends Component {
 	
 	componentDidMount() {
 		const { loadPosts } = this.props;
 		loadPosts();
+		
 	}
 	
 	
 	
 	render () {
-		const { posts, request } = this.props;
-		console.log(request.pending);
+		const { posts, request} = this.props;
 		
 		if (request.pending === false && request.success === true && posts.length) {
 			return (
 				<div>
-					<PostsList posts={posts}/>
+					<PostsList posts={posts} />
 				</div>
 			);
 		}

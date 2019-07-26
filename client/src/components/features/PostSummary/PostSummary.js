@@ -2,27 +2,23 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 import Button from '../../common/Button/Button';
+import { Link } from 'react-router-dom';
 import SmallTitle from '../../common/SmallTitle/SmallTitle';
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
 import cutText from './PostSummaryContainer'
 import './PostSummary.scss';
 
 
-const handleChange = (id) => {
-	console.log(id);
-}
 
 
 
-const PostSummary = ({ _id, title, content }) => (
+const PostSummary = ({ _id, title, content, loadOnePost }) => (
 	<article className="post-summary">
 		<SmallTitle>{title}</SmallTitle>
 		<HtmlBox>{cutText(content, 250)}</HtmlBox>
-		<Button variant="primary" onClick={() =>{
-			handleChange(_id)
-		}}>
+		<Button variant="primary"><Link to={`/posts/${_id}`}>
 			Read more
-		</Button>
+		</Link></Button>
 	</article>
 );
 
