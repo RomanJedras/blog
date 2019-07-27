@@ -13,7 +13,6 @@ class Posts extends Component {
 	componentDidMount() {
 		const { loadPosts } = this.props;
 		loadPosts();
-		
 	}
 	
 	

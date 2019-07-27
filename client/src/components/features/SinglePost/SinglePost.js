@@ -15,14 +15,15 @@ class SinglePost extends Component {
 	
 	componentDidMount() {
 		const { loadSinglePost, resetRequest } = this.props;
-		loadSinglePost();
+		console.log(this.props);
+		loadSinglePost(this.props.id);
 		resetRequest();
 	}
 	
 	
 	render () {
 		const { singlePost, request } = this.props;
-		if (!request.pending && !!request.success && singlePost) {
+		if (request.pending === false && request.success === true && singlePost) {
 			return (
 				<div>
 					<article className="post-summary">
@@ -66,7 +67,6 @@ SinglePost.propTypes = {
 			content: PropTypes.string.isRequired,
 			author: PropTypes.string.isRequired
 		}),
-	loadPosts: PropTypes.func.isRequired,
 	resetRequest: PropTypes.func.isRequired,
 };
 

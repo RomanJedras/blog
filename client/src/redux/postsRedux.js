@@ -39,6 +39,7 @@ export const LOAD_ONEPOST = createActionName('LOAD_ONEPOST');
 export const START_REQUEST = createActionName('START_REQUEST');
 export const END_REQUEST = createActionName('END_REQUEST');
 export const ERROR_REQUEST = createActionName('ERROR_REQUEST');
+export const RESET_REQUEST = createActionName('RESET_REQUEST');
 /* THUNKS */
 export const loadPostsRequest = () => {
 	return async dispatch => {
@@ -63,8 +64,10 @@ export const loadOnePostRequest = (id) => {
 		
 		try {
 			let res = await axios.get(`${API_URL}/posts/${id}`);
+			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
 			dispatch(loadOnePost(res.data));
 			dispatch(endRequest());
+			
 		} catch(e) {
 			dispatch(errorRequest(e.message))
 		}
@@ -80,7 +83,7 @@ export const loadOnePost = payload =>({payload, type: LOAD_ONEPOST });
 export const startRequest = () => ({ type: START_REQUEST });
 export const endRequest = () => ({ type: END_REQUEST });
 export const errorRequest = error => ({ error, type: ERROR_REQUEST });
-
+export const resetRequest = () => ({ type: RESET_REQUEST });
 
 export default function reducer(statePart = initialState, action = {}) {
 	
@@ -95,6 +98,8 @@ export default function reducer(statePart = initialState, action = {}) {
 			return { ...statePart, request: { pending: false, error: null, success: true } };
 		case ERROR_REQUEST:
 			return { ...statePart, request: { pending: false, error: action.error, success: false } };
+		case RESET_REQUEST:
+			return { ...statePart, request: { pending: false, error: null, success: null } };
 		default:
 			return statePart;
 	}

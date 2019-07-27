@@ -20,7 +20,7 @@ exports.getPosts = async (req, res) => {
 };
 
 exports.getPost = async (req, res) => {
-	console.log(req.params.id);
+	
 	try {
 		res.status(200).json(await Post.findById(req.params.id));
 		

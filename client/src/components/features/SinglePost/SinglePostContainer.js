@@ -3,12 +3,13 @@ import { getSinglePost, getRequest, loadOnePostRequest } from '../../../redux/po
 import SinglePost from './SinglePost';
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
 	singlePost: getSinglePost(state),
 	request: getRequest(state),
 });
 
 const mapDispatchToProps = (dispatch, {id}) => ({
+	
 	loadSinglePost: () => dispatch(loadOnePostRequest(id)),
 	resetRequest: () => dispatch({ type: 'RESET_REQUEST' })
 });
