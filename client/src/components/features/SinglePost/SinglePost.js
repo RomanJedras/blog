@@ -14,9 +14,9 @@ import '../PostSummary/PostSummary.scss';
 class SinglePost extends Component {
 	
 	componentDidMount() {
-		const { loadSinglePost, resetRequest } = this.props;
+		const { loadPost, resetRequest } = this.props;
 		console.log(this.props);
-		loadSinglePost(this.props.id);
+		loadPost();
 		resetRequest();
 	}
 	
@@ -67,6 +67,7 @@ SinglePost.propTypes = {
 			content: PropTypes.string.isRequired,
 			author: PropTypes.string.isRequired
 		}),
+	loadPost: PropTypes.func.isRequired,
 	resetRequest: PropTypes.func.isRequired,
 };
 
