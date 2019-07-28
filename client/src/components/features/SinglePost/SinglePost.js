@@ -14,15 +14,15 @@ import '../PostSummary/PostSummary.scss';
 class SinglePost extends Component {
 	
 	componentDidMount() {
-		const { loadPost, resetRequest } = this.props;
-		console.log(this.props);
-		loadPost();
+		const { loadPost, resetRequest, match } = this.props;
+		loadPost(match.params.id);
 		resetRequest();
 	}
 	
 	
 	render () {
 		const { singlePost, request } = this.props;
+		
 		if (request.pending === false && request.success === true && singlePost) {
 			return (
 				<div>
@@ -48,6 +48,7 @@ class SinglePost extends Component {
 				</div>
 			)
 		}
+		
 		if (!request.pending && request.success && !singlePost) {
 			return (
 				<div>
