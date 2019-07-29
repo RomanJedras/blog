@@ -1,4 +1,5 @@
 const Post = require('../models/post.model');
+const uuid = require('uuid');
 // get all posts
 
 // exports.getPosts = function (req, res) {
@@ -20,7 +21,6 @@ exports.getPosts = async (req, res) => {
 };
 
 exports.getPost = async (req, res) => {
-		console.log(req.params.id);
 	try {
 		res.status(200).json(await Post.findById(req.params.id));
 		
@@ -30,5 +30,22 @@ exports.getPost = async (req, res) => {
 			'messages': error  //On production should be Invalid data send
 		});
 	}
-	
+};
+
+exports.addPost = async (req,res) => {
+	try {
+		const { title, author, content } = req.body;
+		
+		let newPost = new Post();
+		newPost.title = title;
+		newPost.author = author;
+		newPost.content = content;
+		newPost.id = uuid();
+		
+		let postSaved = await newPost.save();
+		res.status(200).json(postSaved);
+		
+	} catch(err) {
+		res.status(500).json(err);
+	}
 };
