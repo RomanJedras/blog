@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 
 import PostSummary from '../PostSummary/PostSummary';
 
-const PostsList = ({ posts, loadOnePost }) => (
+const PostsList = ({ posts }) => (
 	
 	<div>
 		<section className="posts-list">

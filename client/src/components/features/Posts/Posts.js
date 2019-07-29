@@ -36,6 +36,15 @@ class Posts extends Component {
 			)
 		};
 		
+		if (!request.pending && request.error !== null) {
+			return (
+				<div>
+					<Alert variant='error' children={request.error}/>
+				</div>
+			)
+		}
+		
+		
 		if (request.pending === false && request.success === true && posts.length === 0) {
 			return (
 				<div>

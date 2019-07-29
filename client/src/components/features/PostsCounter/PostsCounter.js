@@ -16,7 +16,7 @@ class PostsCounter extends Component {
 		}
 		return (
 			<div>
-				- no posts -
+				<p>Waiting for data </p>
 			</div>)
 	}
 	

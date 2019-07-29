@@ -4,9 +4,10 @@ import Spinner from '../../common/Spinner/Spinner';
 import Alert from '../../common/Alert/Alert';
 import SmallTitle from '../../common/SmallTitle/SmallTitle';
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
-
+import { Link } from 'react-router-dom';
 
 import '../PostSummary/PostSummary.scss';
+import Button from "../../common/Button/Button";
 
 
 
@@ -22,8 +23,7 @@ class SinglePost extends Component {
 	
 	render () {
 		const { singlePost, request } = this.props;
-		console.log(request);
-		console.log(singlePost);
+		
 		
 		if (request.pending === false && request.success === true) {
 			
@@ -33,6 +33,9 @@ class SinglePost extends Component {
 						<SmallTitle>{singlePost.title}</SmallTitle>
 						<HtmlBox>{singlePost.content}</HtmlBox>
 						<p>Author: {singlePost.author}</p>
+						<Button variant="primary"><Link to={`/posts/`}>
+							Posts list
+						</Link></Button>
 					</article>
 				</div>
 			)
