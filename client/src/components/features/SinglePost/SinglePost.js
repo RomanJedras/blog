@@ -22,28 +22,10 @@ class SinglePost extends Component {
 	
 	render () {
 		const { singlePost, request } = this.props;
+		console.log(request);
+		console.log(singlePost);
 		
-		if (request.pending || !!request.success && !singlePost ) {
-			return (
-				<div>
-					<Spinner />
-				</div>
-			)
-		} else if (!request.pending && request.error !== null) {
-			return (
-				<div>
-					<Alert variant='error' children={request.error}/>
-				</div>
-			)
-		} else if (!request.pending && request.success && !singlePost) {
-			
-			return (
-				<div>
-					<Alert variant='info' children='-- no post --'/>
-				</div>
-			)
-		
-		} else {
+		if (request.pending === false && request.success === true) {
 			
 			return (
 				<div>
@@ -55,6 +37,33 @@ class SinglePost extends Component {
 				</div>
 			)
 		}
+		
+		if (request.pending === true || request.success === null) {
+			return (
+				<div>
+					<Spinner />
+				</div>
+			)
+		};
+		
+		if (!request.pending && request.error !== null) {
+			return (
+				<div>
+					<Alert variant='error' children={request.error}/>
+				</div>
+			)
+		}
+		
+		if (request.pending === false && request.success === true && SinglePost.length === 0) {
+			return (
+				<div>
+					<Alert variant='info' children='-- no posts --'/>
+				</div>
+			)
+		}
+		
+		
+		
 	}
 	
 }

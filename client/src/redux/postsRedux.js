@@ -59,7 +59,6 @@ export const loadPostsRequest = () => {
 };
 
 export const loadOnePostRequest = (id) => {
-	console.log('load' + id);
 	return async dispatch => {
 		dispatch(startRequest());
 		
