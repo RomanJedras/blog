@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { getSinglePost, getRequest, loadOnePostRequest } from '../../../redux/postsRedux';
 import SinglePost from './SinglePost';
-import { withRouter } from "react-router";
+import { withRouter } from "react-router-dom";
 
 
 const mapStateToProps = (state) => ({
