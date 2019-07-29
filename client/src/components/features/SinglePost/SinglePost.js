@@ -23,7 +23,28 @@ class SinglePost extends Component {
 	render () {
 		const { singlePost, request } = this.props;
 		
-		if (request.pending === false && request.success === true && singlePost) {
+		if (request.pending || !!request.success && !singlePost ) {
+			return (
+				<div>
+					<Spinner />
+				</div>
+			)
+		} else if (!request.pending && request.error !== null) {
+			return (
+				<div>
+					<Alert variant='error' children={request.error}/>
+				</div>
+			)
+		} else if (!request.pending && request.success && !singlePost) {
+			
+			return (
+				<div>
+					<Alert variant='info' children='-- no post --'/>
+				</div>
+			)
+		
+		} else {
+			
 			return (
 				<div>
 					<article className="post-summary">
@@ -31,28 +52,6 @@ class SinglePost extends Component {
 						<HtmlBox>{singlePost.content}</HtmlBox>
 						<p>Author: {singlePost.author}</p>
 					</article>
-				</div>
-			)
-		}
-		if (request.pending || !!request.success ) {
-			return (
-				<div>
-					<Spinner />
-				</div>
-			)
-		};
-		if (!request.pending && request.error !== null) {
-			return (
-				<div>
-					<Alert variant='error' children={request.error}/>
-				</div>
-			)
-		}
-		
-		if (!request.pending && request.success && !singlePost) {
-			return (
-				<div>
-					<Alert variant='info' children='-- no post --'/>
 				</div>
 			)
 		}
