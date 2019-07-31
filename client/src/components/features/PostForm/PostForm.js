@@ -22,8 +22,12 @@ class PostForm extends Component {
 		}
 	}
 	
-	
-	handleChange = (e) => {
+    componentDidMount () {
+	   const { resetRequest } = this.props;
+	   resetRequest();
+    }
+    
+    handleChange = (e) => {
 		const { post } = this.state;
 		this.setState({ post: { ...post, [e.target.name]: e.target.value }});
 	}

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getSinglePost, getRequest, loadOnePostRequest } from '../../../redux/postsRedux';
+import { getSinglePost, getRequest, loadOnePostRequest, resetRequest } from '../../../redux/postsRedux';
 import SinglePost from './SinglePost';
 import { withRouter } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 	
 	loadPost: (id) => dispatch(loadOnePostRequest(id)),
-	resetRequest: () => dispatch({ type: 'RESET_REQUEST' })
+	resetRequest: () => dispatch(resetRequest())
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SinglePost));

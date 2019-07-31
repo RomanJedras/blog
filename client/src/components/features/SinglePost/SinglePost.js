@@ -24,14 +24,13 @@ class SinglePost extends Component {
 	render () {
 		const { singlePost, request } = this.props;
 		
-		
 		if (request.pending === false && request.success === true) {
 			
 			return (
 				<div>
 					<article className="post-summary">
 						<SmallTitle>{singlePost.title}</SmallTitle>
-						<HtmlBox>{singlePost.content}</HtmlBox>
+						<HtmlBox>{singlePost.content}</HtmlBox>>
 						<p>Author: {singlePost.author}</p>
 						<Button variant="primary"><Link to={`/posts/`}>
 							Posts list
