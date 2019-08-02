@@ -10,7 +10,6 @@ class Pagination extends Component {
 	}
 	
 	changePage = (newPage) => {
-		console.log(newPage);
 		const { onPageChange  } = this.props;
 		this.setState({ presentPage: newPage });
 		onPageChange(newPage);
