@@ -49,3 +49,21 @@ exports.addPost = async (req,res) => {
 		res.status(500).json(err);
 	}
 };
+
+exports.editPost = async (req,res) => {
+	try {
+		const { title, author, content } = req.body;
+		const postUpdate = await Post.findByIdAndUpdate(req.params.id,{ $set: {
+			title: title,
+			author : author,
+			content: content,
+			updated_at: new Date()
+		}});
+		res.status(200).json(postUpdate);
+	}catch(error) {
+		res.status(400).json({
+			'status':'fail',
+			'messages': error  //On production should be Invalid data send
+		});
+	}
+}

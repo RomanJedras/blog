@@ -71,7 +71,9 @@ export const loadOnePostRequest = (id) => {
 		} catch(e) {
 			dispatch(errorRequest(e.message))
 		}
+	return Promise.resolve()
 	}
+	
 };
 
 export const addPostRequest = (post) => {
@@ -90,6 +92,24 @@ export const addPostRequest = (post) => {
 		
 	};
 };
+
+export const updatePostRequest = (post) => {
+	return async dispatch => {
+		
+		dispatch(startRequest());
+		try {
+			
+			await axios.put(`${API_URL}posts/${post._id}`, post);
+			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+			dispatch(endRequest());
+			
+		} catch(e) {
+			dispatch(errorRequest(e.message));
+		}
+		
+	};
+};
+
 
 
 /* CREATOR ACTIONS */

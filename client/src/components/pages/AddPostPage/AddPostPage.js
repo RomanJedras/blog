@@ -3,10 +3,9 @@ import PostForm from '../../features/PostForm/PostFormContainer';
 
 
 const AddPostPage = () => (
-	<div>
-		<h1>Add Post Page</h1>
+	<section>
 		<PostForm/>
-	</div>
+	</section>
 );
 
 export default AddPostPage;

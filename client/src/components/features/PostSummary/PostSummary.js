@@ -20,6 +20,9 @@ const PostSummary = ({ _id, title, content, author }) => (
 		<Button variant="primary"><Link to={`/posts/${_id}`}>
 			Read more
 		</Link></Button>
+		<Button variant="success"><Link to={`/posts/new/${_id}`}>
+			Edit post
+		</Link></Button>
 	</article>
 );
 

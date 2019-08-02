@@ -9,4 +9,5 @@ const router = express.Router();
 router.route('/posts').get(PostController.getPosts);
 router.route('/posts/:id').get(PostController.getPost);
 router.route('/posts').post(PostController.addPost);
+router.route('/posts/:id').put(PostController.editPost);
 module.exports = router;
