@@ -89,7 +89,6 @@ export const addPostRequest = (post) => {
 		} catch(e) {
 			dispatch(errorRequest(e.message));
 		}
-		
 	};
 };
 
@@ -98,7 +97,6 @@ export const updatePostRequest = (post) => {
 		
 		dispatch(startRequest());
 		try {
-			
 			await axios.put(`${API_URL}posts/${post._id}`, post);
 			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
 			dispatch(endRequest());
@@ -106,7 +104,6 @@ export const updatePostRequest = (post) => {
 		} catch(e) {
 			dispatch(errorRequest(e.message));
 		}
-		
 	};
 };
 

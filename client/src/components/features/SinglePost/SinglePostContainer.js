@@ -10,7 +10,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	
 	loadPost: (id) => dispatch(loadOnePostRequest(id)),
 	resetRequest: () => dispatch(resetRequest())
 });

@@ -63,11 +63,7 @@ class SinglePost extends Component {
 				</div>
 			)
 		}
-		
-		
-		
 	}
-	
 }
 
 

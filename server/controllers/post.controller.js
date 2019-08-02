@@ -35,13 +35,11 @@ exports.getPost = async (req, res) => {
 exports.addPost = async (req,res) => {
 	try {
 		const { title, author, content } = req.body;
-		
 		let newPost = new Post();
 		newPost.title = title;
 		newPost.author = author;
 		newPost.content = content;
 		newPost.id = uuid();
-		
 		let postSaved = await newPost.save();
 		res.status(200).json(postSaved);
 		

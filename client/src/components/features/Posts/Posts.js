@@ -15,11 +15,8 @@ class Posts extends Component {
 		loadPosts();
 	}
 	
-	
-	
 	render () {
 		const { posts, request} = this.props;
-		
 		if (request.pending === false && request.success === true && posts.length) {
 			return (
 				<div>

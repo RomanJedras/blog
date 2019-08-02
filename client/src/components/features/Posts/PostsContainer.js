@@ -11,7 +11,4 @@ const mapDispatchToProps = dispatch => ({
 	loadPosts: () => dispatch(loadPostsRequest()),
 });
 
-
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

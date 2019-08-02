@@ -19,7 +19,6 @@ class PostsCounter extends Component {
 				<p>Waiting for data </p>
 			</div>)
 	}
-	
 }
 
 
