@@ -22,6 +22,7 @@ const initialState = {
 	amount: 0,
 	postsPerPage: 10,
 	presentPage: 1,
+	pagination: true,
 	singlePost: {
 		id: '',
 		title: '',

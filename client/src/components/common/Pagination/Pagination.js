@@ -10,8 +10,8 @@ class Pagination extends Component {
 	}
 	
 	changePage = (newPage) => {
+		console.log(newPage);
 		const { onPageChange  } = this.props;
-		
 		this.setState({ presentPage: newPage });
 		onPageChange(newPage);
 	}
@@ -19,7 +19,7 @@ class Pagination extends Component {
 	
 	
 	render () {
-		const { pages, onPageChange } = this.props;
+		const { pages } = this.props;
 		const { presentPage } = this.state;
 		const { changePage } = this;
 		
@@ -46,6 +46,7 @@ Pagination.propTypes = {
 	pages: PropTypes.number.isRequired,
 	initialPage: PropTypes.number,
 	onPageChange: PropTypes.func.isRequired,
+	
 };
 
 export default Pagination;

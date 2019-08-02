@@ -16,14 +16,20 @@ class Posts extends Component {
 		loadPostByPage(1);
 	}
 	
+	loadPostsPage = (page) => {
+		const { loadPostByPage } = this.props;
+		loadPostByPage(page);
+	}
+	
 	render () {
 		const { posts, request, pages} = this.props;
-		const { loadPostsPage } = this;
+		
+		
 		if (request.pending === false && request.success === true && posts.length) {
 			return (
 				<div>
 					<PostsList posts={posts} />
-					<Pagination pages={pages} onPageChange={loadPostsPage}/>
+					<Pagination pages={pages} onPageChange={this.loadPostsPage}/>
 				</div>
 			);
 		}
