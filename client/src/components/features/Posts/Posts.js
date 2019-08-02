@@ -4,6 +4,7 @@ import { PropTypes } from 'prop-types';
 import Spinner from '../../common/Spinner/Spinner';
 import PostsList from '../PostsList/PostsList';
 import Alert from '../../common/Alert/Alert'
+import Pagination from "../../common/Pagination/Pagination";
 
 
 
@@ -11,16 +12,18 @@ import Alert from '../../common/Alert/Alert'
 class Posts extends Component {
 	
 	componentDidMount() {
-		const { loadPosts } = this.props;
-		loadPosts();
+		const { loadPostByPage } = this.props;
+		loadPostByPage(1);
 	}
 	
 	render () {
-		const { posts, request} = this.props;
+		const { posts, request, pages} = this.props;
+		const { loadPostsPage } = this;
 		if (request.pending === false && request.success === true && posts.length) {
 			return (
 				<div>
 					<PostsList posts={posts} />
+					<Pagination pages={pages} onPageChange={loadPostsPage}/>
 				</div>
 			);
 		}
@@ -62,7 +65,7 @@ Posts.propTypes = {
 			author:  PropTypes.string.isRequired,
 		})
 	),
-	loadPosts: PropTypes.func.isRequired,
+	loadPostByPage: PropTypes.func.isRequired,
 };
 
 

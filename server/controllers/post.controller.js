@@ -64,4 +64,25 @@ exports.editPost = async (req,res) => {
 			'messages': error  //On production should be Invalid data send
 		});
 	}
-}
+};
+
+
+exports.getPostsByRange = async (req, res) => {
+	try {
+		let {startAt, limit} = req.params;
+		
+		startAt = parseInt(startAt);
+		limit = parseInt(limit);
+		
+		const posts = await Post.find().skip(startAt).limit(limit);
+		const amount = await Post.countDocuments();
+		
+		res.status(200).json({
+			posts,
+			amount,
+		});
+		
+	}catch (err){
+		res.status(500).json(err);
+	}
+};
