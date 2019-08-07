@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { API_URL } from '../config';
 
-
-
 /* SELECTORS */
 export const getPosts = ({ posts }) => posts.data;
 export const getPostsNumber = ({ posts }) => posts.data.length;
 export const getRequest = ({ posts }) => posts.request;
 export const getSinglePost = ({ posts }) => posts.singlePost;
 export const getPages = ({ posts }) => Math.ceil(posts.amount / posts.postsPerPage);
+export const getPresentPage = ({posts}) => posts.presentPage;
 /* ACTIONS */
 
 // action name creator
@@ -20,9 +19,6 @@ const createActionName = name => `app/${reducerName}/${name}`;
 const initialState = {
 	data: [],
 	amount: 0,
-	postsPerPage: 10,
-	presentPage: 1,
-	pagination: true,
 	singlePost: {
 		id: '',
 		title: '',
@@ -48,9 +44,7 @@ export const LOAD_POSTS_PAGE = createActionName('LOAD_POSTS_PAGE');
 /* THUNKS */
 export const loadPostsRequest = () => {
 	return async dispatch => {
-		
 		dispatch(startRequest());
-		
 		try {
 			let res = await axios.get(`${API_URL}/posts`);
 			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
@@ -66,31 +60,25 @@ export const loadPostsRequest = () => {
 export const loadOnePostRequest = (id) => {
 	return async dispatch => {
 		dispatch(startRequest());
-		
 		try {
 			let res = await axios.get(`${API_URL}/posts/${id}`);
 			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
 			dispatch(loadOnePost(res.data));
 			dispatch(endRequest());
-			
 		} catch(e) {
 			dispatch(errorRequest(e.message))
 		}
 	return Promise.resolve()
 	}
-	
 };
 
 export const addPostRequest = (post) => {
 	return async dispatch => {
-		
 		dispatch(startRequest());
 		try {
-			
 			await axios.post(`${API_URL}/posts`, post);
 			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
 			dispatch(endRequest());
-			
 		} catch(e) {
 			dispatch(errorRequest(e.message));
 		}
@@ -99,48 +87,38 @@ export const addPostRequest = (post) => {
 
 export const updatePostRequest = (post) => {
 	return async dispatch => {
-		
 		dispatch(startRequest());
 		try {
 			await axios.put(`${API_URL}posts/${post._id}`, post);
 			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
 			dispatch(endRequest());
-			
 		} catch(e) {
 			dispatch(errorRequest(e.message));
 		}
 	};
 };
 
-export const loadPostsByPageRequest = (page) => {
+export const loadPostsByPageRequest = (page, postsPerPage) => {
 	return async dispatch => {
 		dispatch(startRequest());
-	 try {
-		 const postsPerPage = 10;
-		
-		 const startAt = (page - 1) * postsPerPage;
-		 const limit = postsPerPage;
-		
-		 let res = await axios.get(`${API_URL}/posts/range/${startAt}/${limit}`);
-		 await new Promise((resolve, reject) => setTimeout(resolve, 2000));
-		
-		 const payload = {
-			 posts: res.data.posts,
-			 amount: res.data.amount,
-			 postsPerPage,
-			 presentPage: page,
-		 };
-		
-		 dispatch(loadPostsByPage(payload));
-		 dispatch(endRequest());
-		 
-		 
-	 } catch(err) {
-		 dispatch(errorRequest(err.message));
-	 }
+		try {
+			const startAt = (page - 1) * postsPerPage;
+			const limit = postsPerPage;
+			let res = await axios.get(`${API_URL}/posts/range/${startAt}/${limit}`);
+			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+			const payload = {
+				posts: res.data.posts,
+				amount: res.data.amount,
+				postsPerPage,
+				presentPage: page,
+			};
+			dispatch(loadPostsByPage(payload));
+			dispatch(endRequest());
+		} catch (err) {
+			dispatch(errorRequest(err.message));
+		}
 	}
 };
-
 
 /* CREATOR ACTIONS */
 export const loadPosts = payload => ({ payload, type: LOAD_POSTS });

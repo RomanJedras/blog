@@ -6,30 +6,28 @@ import PostsList from '../PostsList/PostsList';
 import Alert from '../../common/Alert/Alert'
 import Pagination from "../../common/Pagination/Pagination";
 
-
-
-
 class Posts extends Component {
-	
 	componentDidMount() {
-		const { loadPostByPage } = this.props;
-		loadPostByPage(1);
-	}
+		const { loadPostByPage, postsPerPage, initialPage } = this.props;
+		loadPostByPage(initialPage || 1, postsPerPage);
+	};
 	
 	loadPostsPage = (page) => {
-		const { loadPostByPage } = this.props;
-		loadPostByPage(page);
-	}
+		const { loadPostByPage, postsPerPage } = this.props;
+		loadPostByPage(page, postsPerPage);
+	};
 	
 	render () {
-		const { posts, request, pages} = this.props;
-		
+		let { posts, request, pages, pagination, presentPage} = this.props;
+		if (pagination === undefined) {
+			pagination = true;
+		}
 		
 		if (request.pending === false && request.success === true && posts.length) {
 			return (
 				<div>
 					<PostsList posts={posts} />
-					<Pagination pages={pages} onPageChange={this.loadPostsPage}/>
+					{pagination && <Pagination pages={pages} initialPage={presentPage} onPageChange={this.loadPostsPage}/> }
 				</div>
 			);
 		}
@@ -40,7 +38,7 @@ class Posts extends Component {
 					<Spinner />
 				</div>
 			)
-		};
+		}
 		
 		if (!request.pending && request.error !== null) {
 			return (
@@ -50,7 +48,6 @@ class Posts extends Component {
 			)
 		}
 		
-		
 		if (request.pending === false && request.success === true && posts.length === 0) {
 			return (
 				<div>
@@ -58,7 +55,6 @@ class Posts extends Component {
 				</div>
 			)
 		}
-	
 	}
 }
 
@@ -73,6 +69,5 @@ Posts.propTypes = {
 	),
 	loadPostByPage: PropTypes.func.isRequired,
 };
-
 
 export default Posts;
