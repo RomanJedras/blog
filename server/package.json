@@ -15,5 +15,8 @@
   },
   "scripts": {
     "start": "nodemon server.js"
+  },
+  "devDependencies": {
+    "mongoose-simple-random": "^0.4.1"
   }
 }

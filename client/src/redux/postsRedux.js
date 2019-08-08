@@ -41,6 +41,7 @@ export const END_REQUEST = createActionName('END_REQUEST');
 export const ERROR_REQUEST = createActionName('ERROR_REQUEST');
 export const RESET_REQUEST = createActionName('RESET_REQUEST');
 export const LOAD_POSTS_PAGE = createActionName('LOAD_POSTS_PAGE');
+export const LOAD_RANDOM_POST = createActionName("LOAD_RANDOM_POST");
 /* THUNKS */
 export const loadPostsRequest = () => {
 	return async dispatch => {
@@ -54,6 +55,22 @@ export const loadPostsRequest = () => {
 			dispatch(errorRequest(e.message));
 		}
 		
+		return Promise.resolve()
+	};
+};
+
+export const loadRandomPostRequest = () => {
+	return async dispatch => {
+		dispatch(startRequest());
+		try {
+			let res = await axios.get(`${API_URL}post/random`);
+			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+			dispatch(loadRandomPost(res.data));
+			dispatch(endRequest());
+		} catch (e) {
+			dispatch(errorRequest(e.message));
+		}
+		return Promise.resolve()
 	};
 };
 
@@ -128,7 +145,7 @@ export const endRequest = () => ({ type: END_REQUEST });
 export const errorRequest = error => ({ error, type: ERROR_REQUEST });
 export const resetRequest = () => ({ type: RESET_REQUEST });
 export const loadPostsByPage = payload => ({ payload, type: LOAD_POSTS_PAGE });
-
+export const loadRandomPost = payload => ({ payload, type: LOAD_RANDOM_POST });
 export default function reducer(statePart = initialState, action = {}) {
 	
 	switch (action.type) {
@@ -152,6 +169,9 @@ export default function reducer(statePart = initialState, action = {}) {
 				amount: action.payload.amount,
 				data: [...action.payload.posts],
 			};
+		case LOAD_RANDOM_POST:
+			console.log(action.payload);
+			return { ...statePart, singlePost: action.payload };
 		default:
 			return statePart;
 	}

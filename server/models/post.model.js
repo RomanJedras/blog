@@ -8,4 +8,6 @@ const Post = new Schema({
 	author: { type: 'String', required: true },
 });
 
+
+
 module.exports = mongoose.model('Post', Post);

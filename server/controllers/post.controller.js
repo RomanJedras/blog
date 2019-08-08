@@ -1,14 +1,5 @@
 const Post = require('../models/post.model');
 const uuid = require('uuid');
-// get all posts
-
-// exports.getPosts = function (req, res) {
-// 	const data = [
-// 		{ id: 1, title: 'Lorem Ipsum', content: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit' },
-// 		{ id: 2, title: 'Lorem Ipsum II', content: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit' },
-// 	]
-// 	res.json(data);
-// };
 
 exports.getPosts = async (req, res) => {
 	
@@ -70,19 +61,27 @@ exports.editPost = async (req,res) => {
 exports.getPostsByRange = async (req, res) => {
 	try {
 		let {startAt, limit} = req.params;
-		
 		startAt = parseInt(startAt);
 		limit = parseInt(limit);
-		
 		const posts = await Post.find().skip(startAt).limit(limit);
 		const amount = await Post.countDocuments();
-		
 		res.status(200).json({
 			posts,
 			amount,
 		});
-		
 	}catch (err){
 		res.status(500).json(err);
 	}
 };
+
+exports.getRandomPost = async (req, res) => {
+	
+	try {
+		const count = await Post.countDocuments();
+		const rand = Math.floor(Math.random() * count);
+		return res.status(200).json(await Post.findOne().skip(rand));
+	} catch(err) {
+		return res.status(500).json(err);
+	}
+};
+

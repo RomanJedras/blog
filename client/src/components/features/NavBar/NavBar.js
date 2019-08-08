@@ -10,6 +10,7 @@ class NavBar extends React.Component {
 		links: [
 			{ path: '/', title: 'Home' },
 			{ path: '/posts/new', title: 'Add post' },
+			{ path: "/posts/random", title: "Random post" },
 			{ path: '/posts', title: 'Posts' },
 			{ path: '/contact', title: 'Contact' },
 		],
