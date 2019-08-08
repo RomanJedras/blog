@@ -6,6 +6,10 @@ const mongoose = require('mongoose');
 const postRoutes = require('./routes/post.routes');
 const loadTestData = require('./testData');
 const helmet = require('helmet');
+const mongoSanitize = require("express-mongo-sanitize");
+
+
+
 
 dotenv.config({ path: './config.env' });
 
@@ -27,6 +31,7 @@ db.once('open', () =>
 );
 db.on('error', (err) => console.log('Error :' + err));
 const app = express();
+app.use(mongoSanitize());
 app.use(helmet());
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
