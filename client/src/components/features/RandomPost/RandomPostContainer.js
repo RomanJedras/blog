@@ -3,7 +3,6 @@ import { getRequest, getSinglePost, loadRandomPostRequest, resetRequest} from ".
 
 import RandomPost from "./RandomPost";
 
-
 const mapStateToProps = state => ({
 	singlePost: getSinglePost(state),
 	request: getRequest(state)

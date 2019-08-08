@@ -170,8 +170,7 @@ export default function reducer(statePart = initialState, action = {}) {
 				data: [...action.payload.posts],
 			};
 		case LOAD_RANDOM_POST:
-			console.log(action.payload);
-			return { ...statePart, singlePost: action.payload };
+			return { ...statePart, singlePost: action.payload, request: { pending: true, error: null, success: null } };
 		default:
 			return statePart;
 	}

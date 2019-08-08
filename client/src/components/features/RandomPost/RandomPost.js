@@ -9,15 +9,11 @@ import HtmlBox from "../../common/HtmlBox/HtmlBox";
 import Button from '../../common/Button/Button';
 import "../PostSummary/PostSummary.scss";
 
-
-
 class RandomPost extends Component {
-	
 	componentDidMount() {
 		const { loadRandomPost, resetRequestStatus } = this.props;
 		loadRandomPost();
 		resetRequestStatus();
-		
 	}
 	
 	render() {
