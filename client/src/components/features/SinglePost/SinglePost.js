@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
 import { PropTypes } from 'prop-types';
+import { FacebookProvider, Comments, ShareButton } from "react-facebook";
+
 import Spinner from '../../common/Spinner/Spinner';
 import Alert from '../../common/Alert/Alert';
 import SmallTitle from '../../common/SmallTitle/SmallTitle';
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
-import { Link } from 'react-router-dom';
-
-import '../PostSummary/PostSummary.scss';
+import { withRouter, Link } from 'react-router-dom';
 import Button from "../../common/Button/Button";
+
+
+import { BASE_URL } from "../../../config";
+import '../PostSummary/PostSummary.scss';
+
 
 
 
@@ -22,7 +27,7 @@ class SinglePost extends Component {
 	
 	
 	render () {
-		const { singlePost, request } = this.props;
+		const { singlePost, request, location } = this.props;
 		
 		if (request.pending === false && request.success === true) {
 			
@@ -30,8 +35,15 @@ class SinglePost extends Component {
 				<div>
 					<article className="post-summary">
 						<SmallTitle>{singlePost.title}</SmallTitle>
+						<FacebookProvider appId="369668593718797">
+							<ShareButton className="button button--primary" href={`${BASE_URL}${location.pathname}`}>
+								Share
+							</ShareButton>
+						
 						<HtmlBox>{singlePost.content}</HtmlBox>
 						<p>Author: {singlePost.author}</p>
+						<Comments href={`http://localhost:3000/${location.pathname}`} />
+						</FacebookProvider>
 						<Button variant="primary"><Link to={`/posts/`}>
 							Posts list
 						</Link></Button>
@@ -78,4 +90,4 @@ SinglePost.propTypes = {
 	resetRequest: PropTypes.func.isRequired,
 };
 
-export default SinglePost;
+export default withRouter(props => <SinglePost {...props} />);
