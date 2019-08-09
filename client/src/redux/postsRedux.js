@@ -54,7 +54,6 @@ export const loadPostsRequest = () => {
 		} catch(e) {
 			dispatch(errorRequest(e.message));
 		}
-		
 		return Promise.resolve()
 	};
 };

@@ -22,11 +22,10 @@ class PostForm extends Component {
 			author: '',
 			content: ''
 		}
-	}
+	};
 	
     componentDidMount () {
 	   const { resetRequest, loadPost } = this.props;
-	   
 	   if (this.props.match.params.id) {
 	   	loadPost(this.props.match.params.id).then(
 		    () => {
@@ -68,7 +67,6 @@ class PostForm extends Component {
 	};
 	
 	render () {
-		
 		const { post } = this.state;
 		const { handleChange, handleEditor, addPost, editPost } = this;
 		const { request } = this.props;
@@ -77,35 +75,34 @@ class PostForm extends Component {
 		else if(request.pending) return <Spinner />
 		else return (
 				<div>
-					<h1>{(this.props.match.params.id) ? 'Update post' :'Add new Post'}</h1>
-				
-					<form onSubmit= {(this.props.match.params.id) ? editPost : addPost }>
-				
-					<TextField
-						label="Title"
-						value={post.title}
-						onChange={handleChange}
-						name="title"
-					/>
+					<h1>{(this.props.match.params.id) ? 'Update post' : 'Add new Post'}</h1>
 					
-					<TextField
-						label="Author"
-						value={post.author}
-						onChange={handleChange}
-						name="author"
-					/>
-					
-					<SectionTitle>Edit post content</SectionTitle>
-					
-					<Editor
-						className="content-editor"
-						text={post.content}
-						onChange={handleEditor}
-						options={{ placeholder: false, toolbar: { buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3'] } }}
-					/>
-					 <Button variant="primary">{ (this.props.match.params.id) ? 'Edit post' : 'Add post' }</Button>
-				
-			</form></div>
+					<form onSubmit={(this.props.match.params.id) ? editPost : addPost}>
+						<TextField
+							label="Title"
+							value={post.title}
+							onChange={handleChange}
+							name="title"
+						/>
+						<TextField
+							label="Author"
+							value={post.author}
+							onChange={handleChange}
+							name="author"
+						/>
+						<SectionTitle>Edit post content</SectionTitle>
+						<Editor
+							className="content-editor"
+							text={post.content}
+							onChange={handleEditor}
+							options={{
+								placeholder: false,
+								toolbar: {buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3']}
+							}}
+						/>
+						<Button variant="primary">{(this.props.match.params.id) ? 'Edit post' : 'Add post'}</Button>
+					</form>
+				</div>
 			);
 	}
 }

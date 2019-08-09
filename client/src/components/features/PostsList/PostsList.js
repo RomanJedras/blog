@@ -2,9 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 import PostSummary from '../PostSummary/PostSummary';
-
 const PostsList = ({ posts }) => (
-	
 	<div>
 		<section className="posts-list">
 			{posts.map(post => <PostSummary key={post.id} {...post}  />)}

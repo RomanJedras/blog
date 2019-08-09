@@ -8,10 +8,6 @@ import HtmlBox from '../../common/HtmlBox/HtmlBox';
 import cutText from './PostSummaryContainer'
 import './PostSummary.scss';
 
-
-
-
-
 const PostSummary = ({ _id, title, content, author }) => (
 	<article className="post-summary">
 		<SmallTitle>{title}</SmallTitle>

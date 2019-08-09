@@ -9,28 +9,19 @@ import HtmlBox from '../../common/HtmlBox/HtmlBox';
 import { withRouter, Link } from 'react-router-dom';
 import Button from "../../common/Button/Button";
 
-
 import { BASE_URL } from "../../../config";
 import '../PostSummary/PostSummary.scss';
 
-
-
-
-
 class SinglePost extends Component {
-	
 	componentDidMount() {
 		const { loadPost, resetRequest, match } = this.props;
 		loadPost(match.params.id);
 		resetRequest();
 	}
 	
-	
 	render () {
 		const { singlePost, request, location } = this.props;
-		
 		if (request.pending === false && request.success === true) {
-			
 			return (
 				<div>
 					<article className="post-summary">
@@ -39,8 +30,7 @@ class SinglePost extends Component {
 							<ShareButton className="button button--primary" href={`${BASE_URL}${location.pathname}`}>
 								Share
 							</ShareButton>
-						
-						<HtmlBox>{singlePost.content}</HtmlBox>
+							<HtmlBox>{singlePost.content}</HtmlBox>
 						<p>Author: {singlePost.author}</p>
 						<Comments href={`http://localhost:3000/${location.pathname}`} />
 						</FacebookProvider>
@@ -77,7 +67,6 @@ class SinglePost extends Component {
 		}
 	}
 }
-
 
 SinglePost.propTypes = {
 	singlePost: PropTypes.shape(

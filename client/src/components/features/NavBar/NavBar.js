@@ -14,8 +14,7 @@ class NavBar extends React.Component {
 			{ path: '/posts', title: 'Posts' },
 			{ path: '/contact', title: 'Contact' },
 		],
-	}
-	
+	};
 	
 	render() {
 		const { links } = this.state;
@@ -26,7 +25,6 @@ class NavBar extends React.Component {
 			</nav>
 		);
 	}
-	
 }
 
 export default NavBar;

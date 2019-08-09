@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { PropTypes } from 'prop-types';
 
-
 class PostsCounter extends Component {
 	
 	render () {
@@ -20,7 +19,6 @@ class PostsCounter extends Component {
 			</div>)
 	}
 }
-
 
 PostsCounter.propTypes = {
 	posts: PropTypes.number,
