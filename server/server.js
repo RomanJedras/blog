@@ -28,16 +28,19 @@ db.once('open', () =>
 db.on('error', (err) => console.log('Error :' + err));
 const app = express();
 app.use(mongoSanitize());
-app.use(helmet());
 app.use(cors());
-app.use(express.urlencoded({ extended: false }));
-app.use("/api", postRoutes);
-app.use(express.static(path.join(__dirname, '/../client/build')));
-app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname + '/../client/build/index.html'));
-});
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use('/api', postRoutes);
+app.use(mongoSanitize());
+app.use("/api", postRoutes);
+app.use(helmet());
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, "/../client/build")));
+
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname + "/../client/build/index.html"));
+});
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
