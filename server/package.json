@@ -17,6 +17,11 @@
     "start": "nodemon server.js"
   },
   "devDependencies": {
-    "mongoose-simple-random": "^0.4.1"
+    "mongoose-simple-random": "^0.4.1",
+    "express": "4.17.0"
+  },
+  "engines": {
+    "node": "10.15.0",
+    "yarn": "1.17.3"
   }
 }

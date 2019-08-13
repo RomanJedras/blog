@@ -11,6 +11,12 @@ client/yarn.lock
 node_modules/
 yarn-error.log
 yarn.lock
+<<<<<<< HEAD
 client/README.md
 .idea/jsLibraryMappings.xml
 .idea/watcherTasks.xml
+=======
+
+
+
+>>>>>>> master
