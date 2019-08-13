@@ -1,2 +1,2 @@
-export const API_URL = 'https://blog-reactowy.herokuapp.com/api/';
+export const API_URL = '/api/';
 export const BASE_URL = "http://localhost:3000/";
