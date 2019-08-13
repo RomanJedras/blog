@@ -12,6 +12,5 @@ node_modules/
 yarn-error.log
 yarn.lock
 client/README.md
-
-
-
+.idea/jsLibraryMappings.xml
+.idea/watcherTasks.xml
