@@ -12,7 +12,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 
 dotenv.config({ path: './config.env' });
 
-const DB = process.env.DATABASE.replace('' + '<dbuser>', process.env.USENAME).replace(''+'<dbpassword>',process.env.DATABASE_PASSWORD);
+const DB = process.env.DATABASE;
 	mongoose.connect(DB, {
 	useNewUrlParser: true
 });
