@@ -14,7 +14,7 @@
     "uuid": "3.3.2"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "devDependencies": {
     "mongoose-simple-random": "^0.4.1",
