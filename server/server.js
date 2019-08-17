@@ -11,7 +11,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 
 
 dotenv.config({ path: './config.env' });
-
+console.log(process.env.DB);
 const DB = process.env.DATABASE;
 	mongoose.connect(DB, {
 	useNewUrlParser: true
