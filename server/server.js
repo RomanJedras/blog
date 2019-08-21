@@ -39,11 +39,11 @@ app.use(express.json());
 
 app.use('/api', postRoutes);
 
-app.use(express.static('/../client/build'));
+app.use(express.static(path.join(__dirname, '/../client/build')));
 console.log(__dirname);
 app.get('*', (req, res) => {
-	res.sendFile('/../client/build/index.html');
-});
+	res.sendFile(path.join(__dirname + '/../client/build/index.html'));
+})
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
