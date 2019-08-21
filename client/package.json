@@ -47,9 +47,5 @@
   },
   "devDependencies": {
     "prop-types": "^15.7.2"
-  },
-  "engines": {
-    "node": "10.15.0",
-    "yarn": "1.17.3"
   }
 }

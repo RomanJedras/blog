@@ -1,8 +1,11 @@
 import React from 'react';
+import PageTitle from '../../common/PageTitle/PageTitle';
+import SinglePostContainer from '../../features/SinglePost/SinglePostContainer';
 
-const SinglePostPage = () => (
+const SinglePostPage = (props) => (
 	<div>
-		<h1>Single Post</h1>
+		<PageTitle>Single Posts </PageTitle>
+		<SinglePostContainer id={props.match.params.id} />
 	</div>
 );
 

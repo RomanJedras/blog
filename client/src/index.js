@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import App from './App';
 import './styles/global.scss';
 import 'animate.css/animate.min.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+import store from './redux/store';
 
 const Root = () => (
+	<Provider store={store}>
 	<Router>
 		<App />
 	</Router>
+	</Provider>
 );
 
 

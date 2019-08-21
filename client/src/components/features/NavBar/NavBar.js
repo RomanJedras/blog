@@ -1,20 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Logo from '../../common/Logo/Logo';
+import MainMenu from '../../layouts/MainMenu/MainMenu';
+
+import './NavBar.scss';
 
 class NavBar extends React.Component {
 	
+	state = {
+		links: [
+			{ path: '/', title: 'Home' },
+			{ path: '/posts/new', title: 'Add post' },
+			{ path: "/posts/random", title: "Random post" },
+			{ path: '/posts', title: 'Posts' },
+			{ path: '/contact', title: 'Contact' },
+		],
+	};
+	
 	render() {
+		const { links } = this.state;
 		return (
-			<div>
-				<Link to='/'>Home</Link>
-				<Link to='/posts'>Posts</Link>
-				<Link to='/posts/new'>New post</Link>
-				<Link to='/contact'>Contact</Link>
-				<Link to='/posts/postID'>Single Post </Link>
-			</div>
+			<nav className={'navbar'}>
+				<Logo />
+				<MainMenu links={links} />
+			</nav>
 		);
 	}
-	
 }
 
 export default NavBar;
