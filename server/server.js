@@ -7,13 +7,13 @@ const postRoutes = require('./routes/post.routes');
 const loadTestData = require('./testData');
 const helmet = require('helmet');
 const mongoSanitize = require("express-mongo-sanitize");
-
+const path = require('path');
 
 
 
 dotenv.config({ path: './config.env' });
 
-const DB = process.env.DATABASE.replace('' + '<dbuser>', process.env.USENAME).replace(''+'<dbpassword>',process.env.DATABASE_PASSWORD);
+const DB = process.env.DATABASE.replace(''+'<password>',process.env.DATABASE_PASSWORD);
 
 
  mongoose.connect(DB, {
@@ -38,6 +38,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use('/api', postRoutes);
+
+app.use(express.static(path.join(__dirname, '/../client/build')));
+
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname + '/../client/build/index.html'));
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

@@ -48,7 +48,6 @@ export const loadPostsRequest = () => {
 		dispatch(startRequest());
 		try {
 			let res = await axios.get(`${API_URL}/posts`);
-			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
 			dispatch(loadPosts(res.data));
 			dispatch(endRequest());
 		} catch(e) {
@@ -63,7 +62,6 @@ export const loadRandomPostRequest = () => {
 		dispatch(startRequest());
 		try {
 			let res = await axios.get(`${API_URL}post/random`);
-			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
 			dispatch(loadRandomPost(res.data));
 			dispatch(endRequest());
 		} catch (e) {
@@ -78,7 +76,6 @@ export const loadOnePostRequest = (id) => {
 		dispatch(startRequest());
 		try {
 			let res = await axios.get(`${API_URL}/posts/${id}`);
-			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
 			dispatch(loadOnePost(res.data));
 			dispatch(endRequest());
 		} catch(e) {
@@ -93,7 +90,6 @@ export const addPostRequest = (post) => {
 		dispatch(startRequest());
 		try {
 			await axios.post(`${API_URL}/posts`, post);
-			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
 			dispatch(endRequest());
 		} catch(e) {
 			dispatch(errorRequest(e.message));
@@ -106,7 +102,6 @@ export const updatePostRequest = (post) => {
 		dispatch(startRequest());
 		try {
 			await axios.put(`${API_URL}posts/${post._id}`, post);
-			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
 			dispatch(endRequest());
 		} catch(e) {
 			dispatch(errorRequest(e.message));
@@ -121,7 +116,6 @@ export const loadPostsByPageRequest = (page, postsPerPage) => {
 			const startAt = (page - 1) * postsPerPage;
 			const limit = postsPerPage;
 			let res = await axios.get(`${API_URL}/posts/range/${startAt}/${limit}`);
-			await new Promise((resolve, reject) => setTimeout(resolve, 2000));
 			const payload = {
 				posts: res.data.posts,
 				amount: res.data.amount,
