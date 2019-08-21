@@ -40,7 +40,7 @@ app.use(express.json());
 app.use('/api', postRoutes);
 
 app.use(express.static(path.join(__dirname, '/../client/build')));
-
+console.log(__dirname);
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname + '/../client/build/index.html'));
 });
