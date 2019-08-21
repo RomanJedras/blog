@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,eAAgB;EACd,OAAO,EAAE,IAAI;EACb,MAAM,EAAE,eAAqC;EAC7C,SAAS,EAAE,KAAe;EAC1B,OAAO,ECoBG,IAAI;EDnBd,WAAW,ECgBD,6BAA6B;EDfvC,UAAU,EAAE,GAAG;;AAGjB,qBAAsB;EACpB,MAAM,EAAE,eAA+B",
+"sources": ["PostForm.scss","../../../styles/settings.scss"],
+"names": [],
+"file": "PostForm.css"
+}
